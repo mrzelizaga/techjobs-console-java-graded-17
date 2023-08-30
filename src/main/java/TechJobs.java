@@ -131,7 +131,7 @@ public class TechJobs {
                 String value = entry.getValue();
                 System.out.println(key + ": " + value);
             }
-            System.out.println("*****");
+            System.out.println("*****\n");
         }
     }
 }
