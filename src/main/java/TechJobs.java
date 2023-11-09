@@ -12,7 +12,7 @@ public class TechJobs {
 
     public static void main(String[] args) {
 
-        // Initialize our field map with key/name pairs
+
         HashMap<String, String> columnChoices = new HashMap<>();
         columnChoices.put("core competency", "Skill");
         columnChoices.put("employer", "Employer");
@@ -20,14 +20,14 @@ public class TechJobs {
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
 
-        // Top-level menu options
+
         HashMap<String, String> actionChoices = new HashMap<>();
         actionChoices.put("search", "Search");
         actionChoices.put("list", "List");
 
         System.out.println("Welcome to LaunchCode's TechJobs App!");
 
-        // Allow the user to search until they manually quit
+
         while (true) {
 
             String actionChoice = getUserSelection("View jobs by (type 'x' to quit):", actionChoices);
@@ -52,14 +52,11 @@ public class TechJobs {
                     }
                 }
 
-            } else { // choice is "search"
-
-                // How does the user want to search (e.g. by skill or employer)
+            } else {
                 String searchField = getUserSelection("Search by:", columnChoices);
 
                 // What is their search term?
-                System.out.println();
-                System.out.println("Search term: \n");
+                System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
@@ -78,8 +75,6 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
-        // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
             choiceKeys[i] = choiceKey;
@@ -89,8 +84,6 @@ public class TechJobs {
         do {
 
             System.out.println("\n" + menuHeader);
-
-            // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
                 System.out.println("" + j + " - " + choices.get(choiceKeys[j]));
             }
@@ -106,7 +99,6 @@ public class TechJobs {
                 }
             }
 
-            // Validate user's input
             if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
                 System.out.println("Invalid choice. Try again.");
             } else {
@@ -118,24 +110,16 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
+    // Print job list
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        if (someJobs.isEmpty()) {
-            System.out.println();
+        if (someJobs.isEmpty()){
             System.out.print("No Results");
             return;
         }
-
-        for (HashMap<String, String> job : someJobs) {
+        for (HashMap<String, String> entry : someJobs) {
+            System.out.println("\n*****");
+            entry.forEach((key, value) -> System.out.println(key + ": " + value));
             System.out.println("*****");
-            for (Map.Entry<String, String> entry : job.entrySet()) {
-                String key = entry.getKey();
-                String value = entry.getValue();
-                System.out.println(key + ": " + value);
-            }
-            System.out.println("*****");
-
         }
     }
 }
-
